@@ -5,13 +5,11 @@ const port = 8080
 let option = 'index.html'
 
 const server = http.createServer((req, res) => {
-    const curLink = req.url
-    console.log(curLink)
-    if (curLink !== '/style.css') {
-        if (curLink === '/') {
+    if (req.url !== '/style.css') {
+        if (req.url === '/') {
             option = 'index.html'
-        } else if (curLink === '/about' || curLink === '/contact-me') {
-            option = `${curLink.slice(1)}.html`
+        } else if (req.url === '/about' || req.url === '/contact-me') {
+            option = `${req.url.slice(1)}.html`
         } else {
             option = '404.html'
         }
